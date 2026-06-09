@@ -132,9 +132,7 @@ const enrichments: EnrichmentItem[] = [
     iconClassName: "text-neutral-900",
     provider: {
       icon: (
-        <ProviderIcon className="bg-transparent text-orange-500">
-          <Flame className="size-3.5 fill-orange-500 text-orange-500" strokeWidth={1.5} />
-        </ProviderIcon>
+        <Flame className="size-[13px] fill-[#f97316] text-[#f97316]" strokeWidth={1.5} />
       ),
       count: 3,
     },
@@ -207,8 +205,8 @@ const enrichments: EnrichmentItem[] = [
 function CoinIcon() {
   return (
     <Coins
-      className="size-3.5 text-[#16a34a]"
-      strokeWidth={1.75}
+      className="size-[13px] text-[#15803d]"
+      strokeWidth={2}
     />
   );
 }
@@ -223,18 +221,18 @@ function TokenGroup({
   if (!provider && !cost) return null;
 
   return (
-    <div className="inline-flex h-6 shrink-0 items-stretch overflow-hidden rounded-full border border-neutral-300 bg-white text-[11px] font-medium text-neutral-700 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+    <div className="inline-flex h-[22px] shrink-0 items-stretch overflow-hidden rounded-full border border-neutral-200 bg-white text-[11px] font-normal text-neutral-600">
       {provider && (
-        <div className="inline-flex items-center gap-1 px-2">
+        <div className="inline-flex items-center gap-1 px-1.5">
           {provider.icon}
-          <span>+{provider.count}</span>
+          <span className="text-neutral-700">+{provider.count}</span>
         </div>
       )}
-      {provider && cost && <div className="w-px bg-neutral-300" />}
+      {provider && cost && <div className="w-px self-stretch bg-neutral-200" />}
       {cost && (
-        <div className="inline-flex items-center gap-1 px-2">
+        <div className="inline-flex items-center gap-1 px-1.5">
           <CoinIcon />
-          <span>{cost}</span>
+          <span className="text-neutral-700">{cost}</span>
         </div>
       )}
     </div>
@@ -247,25 +245,25 @@ function EnrichmentRow({ item }: { item: EnrichmentItem }) {
   return (
     <button
       type="button"
-      className="grid w-full grid-cols-[16px_minmax(0,1fr)] grid-rows-[auto_auto] gap-x-3 gap-y-0.5 rounded-md px-1 py-2.5 text-left transition-colors hover:bg-neutral-50"
+      className="flex w-full items-center gap-3 rounded-md px-4 py-2.5 text-left transition-colors hover:bg-neutral-50/80"
     >
       <Icon
         className={cn(
-          "col-start-1 row-span-2 size-4 shrink-0 self-center stroke-[1.75]",
+          "size-4 shrink-0 stroke-[1.75]",
           item.iconClassName ?? "text-neutral-900"
         )}
       />
-      <div className="col-start-2 row-start-1 flex min-w-0 items-center justify-between gap-2">
-        <p className="min-w-0 truncate text-sm font-medium leading-5 text-neutral-900">
+      <div className="min-w-0 flex-1 space-y-0.5">
+        <p className="truncate text-sm font-medium leading-tight text-neutral-900">
           {item.title}
         </p>
-        {(item.provider || item.cost) && (
-          <TokenGroup provider={item.provider} cost={item.cost} />
-        )}
+        <p className="truncate text-[13px] leading-tight text-neutral-500">
+          {item.subtitle}
+        </p>
       </div>
-      <p className="col-start-2 row-start-2 truncate text-[13px] leading-4 text-neutral-500">
-        {item.subtitle}
-      </p>
+      {(item.provider || item.cost) && (
+        <TokenGroup provider={item.provider} cost={item.cost} />
+      )}
     </button>
   );
 }
@@ -311,9 +309,11 @@ export function ActionsPanel() {
         </div>
       </div>
 
+      <div className="border-b border-neutral-200" />
+
       {/* Category tabs */}
-      <div className="px-4 pb-3">
-        <div className="grid grid-cols-4 gap-0.5 rounded-lg border border-neutral-200 p-1">
+      <div className="px-4 pb-3 pt-3">
+        <div className="grid grid-cols-4 gap-[4.5px] py-1">
           {categories.map(({ id, label, icon: Icon }) => {
             const isActive = activeCategory === id;
             return (
@@ -325,7 +325,7 @@ export function ActionsPanel() {
                   "flex flex-col items-center gap-1.5 rounded-md px-1 py-2.5 transition-colors",
                   isActive
                     ? "bg-[#EBF5FF] text-[#2563EB]"
-                    : "text-neutral-500 hover:bg-neutral-50"
+                    : "bg-neutral-100 text-neutral-500 hover:bg-neutral-200/80"
                 )}
               >
                 <Icon className="size-4" strokeWidth={1.75} />
@@ -336,8 +336,10 @@ export function ActionsPanel() {
         </div>
       </div>
 
+      <div className="border-b border-neutral-200" />
+
       {/* Filter */}
-      <div className="px-4 pb-2">
+      <div className="px-4 pb-2 pt-3">
         <button
           type="button"
           className="inline-flex h-7 items-center gap-1 rounded-md border border-neutral-200 bg-white px-2.5 text-xs font-normal text-neutral-700 transition-colors hover:bg-neutral-50"
@@ -348,7 +350,7 @@ export function ActionsPanel() {
       </div>
 
       {/* List */}
-      <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden px-3">
+      <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden">
         <div className="pb-3">
           {filtered.map((item) => (
             <EnrichmentRow key={item.id} item={item} />
@@ -357,7 +359,7 @@ export function ActionsPanel() {
       </div>
 
       {/* Footer */}
-      <div className="border-t border-neutral-200 p-4">
+      <div className="p-4">
         <Button
           variant="outline"
           className="h-9 w-full rounded-md border-neutral-200 text-sm font-medium text-neutral-900 shadow-none hover:bg-neutral-50"
