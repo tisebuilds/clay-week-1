@@ -9,8 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Clay Actions Panel — Prototype",
-  description: "Enrichment table side panel design prototype",
+  title: "Clay Actions Panel — Iterations",
+  description: "Compare Actions side panel design iterations",
 };
 
 export default function RootLayout({
