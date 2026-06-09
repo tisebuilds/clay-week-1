@@ -3,6 +3,7 @@ import { ActionsPanel } from "@/components/actions-panel";
 import { ActionsPanelV1 } from "@/components/actions-panel-v1";
 import { ActionsPanelV2 } from "@/components/actions-panel-v2";
 import { ActionsPanelV3 } from "@/components/actions-panel-v3";
+import { ActionsPanelV5 } from "@/components/actions-panel-v5";
 
 export type IterationStatus = "base" | "explore" | "archived";
 
@@ -46,6 +47,14 @@ export const iterations: Iteration[] = [
       "v0 layout with Suggested filter and View all enrichments link on one row below tabs.",
     status: "explore",
     Panel: ActionsPanelV3,
+  },
+  {
+    slug: "v5-wallet-sections",
+    name: "v5 — Wallet sections",
+    description:
+      "Ramp wallet-inspired layout: underline tabs, pill search, collapsible grouped lists with bordered rows.",
+    status: "explore",
+    Panel: ActionsPanelV5,
   },
 ];
 

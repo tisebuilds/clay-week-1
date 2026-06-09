@@ -356,16 +356,6 @@ export function ActionsPanelV2() {
           ))}
         </div>
       </div>
-
-      {/* Footer */}
-      <div className="px-4 pb-4 pt-1 text-center">
-        <button
-          type="button"
-          className="text-sm text-neutral-600 transition-colors hover:text-neutral-900"
-        >
-          Load more
-        </button>
-      </div>
     </aside>
   );
 }
